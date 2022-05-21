@@ -1,5 +1,19 @@
 
 
+const hexInput = document.getElementById('hexInput');
+const inputColor = document.getElementById('inputColor');
+
+
+hexInput.addEventListener('keyup',()=>{
+    const hex = hexInput.value;
+
+    if(!isValidHex(hex)) return;
+
+    const strippedHex = hex.replace('#', ''); // if input already consists # remove it and add it later, handles the case for input without # as well.
+
+    inputColor.style.backgroundColor = '#' + strippedHex;
+})
+
 
 const isValidHex = (hex) => {
     if(!hex) return false;

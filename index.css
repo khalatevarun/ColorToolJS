@@ -41,3 +41,7 @@ input[type="text"]{
     background-color: #c6d5ac;
     margin-bottom: 25px;
 }
+
+p{
+    margin-bottom: 10px;
+}
