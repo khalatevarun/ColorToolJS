@@ -8,6 +8,7 @@ const sliderText = document.getElementById('sliderText');
 const slider = document.getElementById('slider');
 const lightenText = document.getElementById('lightenText');
 const darkenText = document.getElementById('darkenText');
+const errorText = document.getElementById('error');
 
 toggleBtn.addEventListener('click', () => {
     if(toggleBtn.classList.contains('toggled')){
@@ -26,10 +27,19 @@ toggleBtn.addEventListener('click', () => {
 
 
 hexInput.addEventListener('keyup',()=>{
-    const hex = hexInput.value;
+    const hex = hexInput.value.trim();
 
-    if(!isValidHex(hex)) return;
+    if(!hex){
+        removeError();  //if the input field is empty, remove error messsage
+        return;
+    }
 
+    if(!isValidHex(hex)) {
+        showError()
+        return;
+    }
+    removeError();
+        
     const strippedHex = hex.replace('#', ''); // if input already consists # remove it and add it later, handles the case for input without # as well.
 
     inputColor.style.backgroundColor = '#' + strippedHex;
@@ -124,5 +134,12 @@ const reset = () => {
     alteredColorText.innerText = `Altered Color ${hexInput.value}`;
 }
 
+const showError = () => {
+    errorText.innerText = 'Invalid hex color!';
+}
+
+const removeError = () => {
+    errorText.innerText = ''
+}
 
 
