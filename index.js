@@ -2,6 +2,8 @@
 
 const hexInput = document.getElementById('hexInput');
 const inputColor = document.getElementById('inputColor');
+const alteredColor = document.getElementById('alteredColor');
+const alteredColorText = document.getElementById('alteredColorText');
 const sliderText = document.getElementById('sliderText');
 const slider = document.getElementById('slider');
 
@@ -60,18 +62,42 @@ const convertRBGToHex = (r,g,b) => {
     return hex;
 }
 
-slider.addEventListener('input', ()=>{
-    sliderText.textContent = `${slider.value}%`;
-})
-
 const alterColor = (hex, percentage) => {
     const { r, g, b} = convertHextoRGB(hex);
 
     const amount  = Math.floor((percentage/100) * 255);
 
-    const newR = r + amount;
-    const newG = g + amount;
-    const newB = b + amount;
+    const newR = increaseWithin0To255(r, amount);
+    const newG = increaseWithin0To255(g, amount);
+    const newB = increaseWithin0To255(b, amount);
    return convertRBGToHex(newR, newG, newB);
 
 }
+
+
+const increaseWithin0To255 = (hex, amount) => {
+
+    // const newHex = hex + amount;
+   // if(newHex > 255) return 255;
+   // if(newHex < 0) return 0;
+   // return newHex;
+   return Math.min(255, Math.max(0, hex + amount));
+ 
+ } 
+
+slider.addEventListener('input', ()=>{
+
+    if(!isValidHex(hexInput.value)) return;
+
+    sliderText.textContent = `${slider.value}%`;
+
+    const alteredHex = alterColor(hexInput.value, slider.value);
+    alteredColor.style.backgroundColor  = alteredHex;
+    alteredColorText.textContent = alteredHex;
+
+
+
+})
+
+
+

@@ -45,3 +45,38 @@ input[type="text"]{
 p{
     margin-bottom: 10px;
 }
+
+.toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toggle-text {
+    font-size: 18px;
+}
+
+.toggle-btn {
+    height: 30px;
+    width: 60px;
+    background-color: grey;
+    border-radius: 30px;
+    padding: 5px;
+    margin: 0 10px;
+}
+
+.inner-cicle{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.toggle-btn.toggled > .inner-cicle {
+    transform: translateX(30px);
+    background-color: #333;
+}
+
+.unselected {
+    opacity: 0.25;
+}
