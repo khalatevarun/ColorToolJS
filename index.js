@@ -2,6 +2,8 @@
 
 const hexInput = document.getElementById('hexInput');
 const inputColor = document.getElementById('inputColor');
+const sliderText = document.getElementById('sliderText');
+const slider = document.getElementById('slider');
 
 
 hexInput.addEventListener('keyup',()=>{
@@ -58,3 +60,6 @@ const convertRBGToHex = (r,g,b) => {
     return hex;
 }
 
+slider.addEventListener('input', ()=>{
+    sliderText.textContent = `${slider.value}%`;
+})
